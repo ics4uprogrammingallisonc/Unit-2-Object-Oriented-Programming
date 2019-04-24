@@ -1,12 +1,18 @@
+import java.util.Stack;
+
 //My stack created for day 16 - 19
 public class StackA {
-	//create a new stack
-	StackA myStack = new StackA();
 	
+	//make a new stack 
+	Stack<Integer> myStack = new Stack();
+
 	//function to push
-	public void Push(int newNumber) {
+	public Stack Push(int newNumber) {
 		//add the number to the stack
-		myStack.Push(newNumber);
+		myStack.push(newNumber);
+		
+		//return the stack
+		return myStack;
 	}
 
 }

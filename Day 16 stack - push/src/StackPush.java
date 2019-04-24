@@ -14,13 +14,18 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.Stack;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 
 public class StackPush {
 
-	private JFrame frame;
+	private JFrame frmStackPush;
 	private JTextField txtUserInt;
 
 	/**
@@ -31,7 +36,7 @@ public class StackPush {
 			public void run() {
 				try {
 					StackPush window = new StackPush();
-					window.frame.setVisible(true);
+					window.frmStackPush.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -50,25 +55,34 @@ public class StackPush {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 430, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmStackPush = new JFrame();
+		frmStackPush.setTitle("Stack - Push");
+		frmStackPush.setBounds(100, 100, 430, 300);
+		frmStackPush.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmStackPush.getContentPane().setLayout(null);
 		
 		JLabel lblEnterint = new JLabel("Enter an integer:");
 		lblEnterint.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblEnterint.setBounds(49, 11, 121, 20);
-		frame.getContentPane().add(lblEnterint);
+		frmStackPush.getContentPane().add(lblEnterint);
 		
 		txtUserInt = new JTextField();
 		txtUserInt.setBounds(168, 13, 178, 20);
-		frame.getContentPane().add(txtUserInt);
+		frmStackPush.getContentPane().add(txtUserInt);
 		txtUserInt.setColumns(10);
 		
+		//set a default model
 		JList lstStackValue = new JList();
+		DefaultListModel model = new DefaultListModel();
+		lstStackValue.setModel(model);
 		lstStackValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lstStackValue.setBounds(49, 85, 297, 146);
-		frame.getContentPane().add(lstStackValue);
+		frmStackPush.getContentPane().add(lstStackValue);
+		
+		//add a scroll bar
+		//JScrollPane scrollPane = new JScrollPane(lstStackValue);
+		//scrollPane.setViewportView(lstStackValue);
+	
 		
 		JButton btnAddValue = new JButton("Add Value");
 		btnAddValue.addActionListener(new ActionListener() {
@@ -80,6 +94,11 @@ public class StackPush {
 				//get the stack class
 				StackA stacksTry = new StackA();
 				
+				//make a new stack 
+				Stack<Integer> myStack = new Stack();
+				
+				//set to the stack 
+				
 				//get the number from the text box
 				try {
 					userNum = Integer.parseInt(txtUserInt.getText());
@@ -89,15 +108,21 @@ public class StackPush {
 					JOptionPane.showMessageDialog(null, "Please only enter numbers that are integers." );
 				}
 				
-				//add the number to the stack
-				stacksTry.Push(userNum);
-				
-				//display the stack to the 
-				
+				//check if a number was taken
+				if (userNum != 0) {
+					//add the number to the stack
+					myStack = stacksTry.Push(userNum);
+					
+					//display the stack to the user
+					for(int i : myStack) {
+						//add to the list
+						model.addElement(Integer.toString(i));
+					}
+				}
 			}
 		});
 		btnAddValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnAddValue.setBounds(149, 51, 93, 23);
-		frame.getContentPane().add(btnAddValue);
+		btnAddValue.setBounds(141, 51, 102, 23);
+		frmStackPush.getContentPane().add(btnAddValue);
 	}
 }
