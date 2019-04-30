@@ -25,12 +25,12 @@ public class StackA {
 	}
 
 	//function to "peek"
-	public Stack Peek() {
+	public int Peek() {
 		//get the top number of the stack
-		myStack.peek();
+		int myInt = myStack.peek();
 		
 		//return the stack
-		return myStack;
+		return myInt;
 	}
 	
 	//function to clear the stack
@@ -42,4 +42,3 @@ public class StackA {
 		return myStack;
 	}
 }
-
