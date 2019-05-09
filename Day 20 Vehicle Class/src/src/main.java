@@ -30,11 +30,14 @@ public class main {
 			System.out.println("Licence plate number:");
 			//get the input 
 			licencePlate = read.nextLine();
+			//call the function to set the variable
+			myObject.PlateNumber(licencePlate);
 			
 			//get the colour
 			System.out.println("Colour:");
 			//get the input 
 			colour = read.nextLine();
+			myObject.Colour(colour);
 			
 			//get the number of doors
 			//until they enter a int
@@ -47,6 +50,8 @@ public class main {
 				try {
 					//get the input
 					numDoors = Integer.parseInt(read.nextLine());
+					//set the num doors
+					myObject.NumDoors(numDoors);
 				}
 				catch(Exception e)
 				{
@@ -54,9 +59,6 @@ public class main {
 					System.out.println("Please enter an integer.");
 				}
 			}
-			
-			//add to the vehicle 
-			myObject.Make(licencePlate, colour, numDoors);
 			
 			//get speed of vehicle
 			for (int counterB = 0; counterB <= 10; counterB ++) {
@@ -97,31 +99,26 @@ public class main {
 }
 
 class Vehicle{
-	String plateNumber = "";
-	String colour = "";
-	int numDoors = 0;
-	int speed = 0;
-	final int MAX_SPEED = 80;
-	
-	//get the new car
-	public void Make(String newPlateNumber, String newColour, int newNumDoor) {
-		//change the variables
-		plateNumber = newPlateNumber;
-		colour = newColour;
-		numDoors = newNumDoor;
-	}
+	private String plateNumber = "";
+	private String colour = "";
+	private int numDoors = 0;
+	private int speed = 0;
+	private final int MAX_SPEED = 80;
 	
 	//get the numbers
-	public String PlateNumber() {
-		
+	public String PlateNumber(String temp) {
+		//set the plate number
+		plateNumber = temp;
 		return plateNumber;
 	}
-	public String Colour() {
-		
+	public String Colour(String temp) {
+		//set the colour
+		colour = temp;
 		return colour;
 	}
-	public int NumDoors() {
-	
+	public int NumDoors(int temp) {
+		//get the number of doors
+		numDoors = temp;
 		return numDoors;
 	}
 	
@@ -130,8 +127,7 @@ class Vehicle{
 		if (speed != 0) {
 			//take away
 			speed = speed - 5;
-		}
-		
+		}	
 	}
 	
 	protected void Accelerate() {
