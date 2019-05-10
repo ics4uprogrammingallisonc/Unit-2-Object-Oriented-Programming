@@ -99,6 +99,9 @@ public class main {
 }
 
 class Vehicle{
+	
+	Vehicle(){
+	}	
 	private String plateNumber = "";
 	private String colour = "";
 	private int numDoors = 0;
